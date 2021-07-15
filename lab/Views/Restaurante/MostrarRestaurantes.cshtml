@@ -1,0 +1,118 @@
+﻿@model IEnumerable<lab.Models.Restaurante>
+@{
+    @using Microsoft.AspNetCore.Http
+
+    var RestaurantesFav = ViewBag.fav as string[];
+}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Nome
+                </th>
+                <th>
+                    Telefone
+                </th>
+                <th>
+                    Morada
+                </th>
+                <th>
+                    Gps
+                </th>
+                <th>
+                    Horário
+                </th>
+                <th>
+                    Dia de descanso
+                </th>
+                <th>
+                    Tipo de Serviço
+                </th>
+                <th>
+                    Foto
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                if (item.QuemAprovou != null)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Telefone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Morada)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Gps)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Horario)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DiaDescanso)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TipoServico)
+                        </td>
+                        <td>
+                            <img src="~/Imagens_Restaurante/@Html.DisplayFor(modelItem => item.Foto)" height="100" width="100" />
+                        </td>
+                        @if (Context.Session.GetString("Role") == "Cliente")
+                        {
+                            <td>
+                                @if (!RestaurantesFav.Contains(item.Username))
+                                {
+                                    @Html.ActionLink("Adicionar aos Favoritos", "AdicionarFavoritos", new { Username = item.Username })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("Eliminar dos Favoritos", "EliminarFavoritos", new { Username = item.Username })
+                                }
+                            </td>
+
+                    
+                        }
+
+                        <td>
+                            <form asp-action="MostrarPratos">
+                                <div class="form-group">
+                                    <button style="font-size : 10px;height: 120%;" type="submit" name="RestauranteUsername" value="@item.Username" class="form-control">Ver pratos</button>
+                                    <span class="text-danger"></span>
+                                </div>
+                            </form>
+                        </td>
+
+                        <td>
+                            @if (Context.Session.GetString("Role") == "Cliente")
+                            {
+                                <form asp-controller="Cliente" asp-action="MostrarAvaliacoes" method="get">
+                                    <div class="form-group">
+                                        <button style="font-size : 10px;height: 120%;" type="submit" name="UsernameRestaurante" value="@item.Username" class="form-control">Avaliar Restaurantes</button>
+                                        <span class="text-danger"></span>
+                                    </div>
+                                </form>
+                            }
+                            else
+                            {
+                                <form asp-controller="Cliente" asp-action="MostrarAvaliacoes" method="get">
+                                    <div class="form-group">
+                                        <button style="font-size : 10px;height: 120%;" type="submit" name="UsernameRestaurante" value="@item.Username" class="form-control">Ver Avaliacões dos Restaurantes </button>
+                                        <span class="text-danger"></span>
+                                    </div>
+                                </form>
+                            }
+                        </td>
+                    </tr>
+
+                }
+            }
+        </tbody>
+    </table>

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<lab.Models.Restaurante>
+@{
+    ViewData["Title"] = "Menu";
+}
+
+<partial name="SideBar" />
+
+<br />
+<br />
+
+<form asp-controller="Pratos" asp-action="Filtrar" method="get">
+    <div class="form-group">
+        <button style="font-size:10px;height:40px;width:100px;float: left;" type="submit" class="form-control">Filtrar pratos</button>
+        <span class="text-danger"></span>
+        <h3 style="text-align:center">Restaurantes inscritos em Food2You</h3>
+    </div>
+</form>
+
+
+<br />
+
+<div id="partialviews">
+
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script type="text/jscript">
+
+    $(document).ready(function () {
+        $("#partialviews").load('/Restaurante/MostrarRestaurantes');
+    });
+</script>
+
+
+

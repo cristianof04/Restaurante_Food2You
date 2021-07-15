@@ -1,0 +1,45 @@
+﻿@model lab.Models.Utilizador
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>Login</h1>
+
+@if (!string.IsNullOrEmpty(Convert.ToString(ViewBag.AlertMessage)))
+{
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script>
+        $(document).ready(function () {
+            alert("@ViewBag.AlertMessage");
+        });
+    </script>
+
+    ViewBag.AlertMessage = null;
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Login">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Username" class="control-label"></label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PassWord" class="control-label">Password</label>
+                <input type="password" asp-for="PassWord" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a>Nao tem conta?</a>
+    <a href="/User/TipoRegisto">Registar</a>
+</div>

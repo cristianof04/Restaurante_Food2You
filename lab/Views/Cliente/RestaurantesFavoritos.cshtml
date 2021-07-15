@@ -1,0 +1,83 @@
+﻿@model IEnumerable<lab.Models.Restaurante>
+
+@{
+    int i = 0;
+    var UsernameRestaurantes = ViewBag.Message as string[];
+}
+
+<h4>Restaurantes favoritos</h4>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Morada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gps)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Horario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiaDescanso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoServico)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Foto)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (UsernameRestaurantes != null)
+            {
+                for (i = 0; i < UsernameRestaurantes.Length; i++)
+                {
+                    if (item.Username == UsernameRestaurantes[i])
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Morada)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Telefone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Gps)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Horario)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DiaDescanso)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TipoServico)
+                        </td>
+                        <td>
+                            <img src="~/Imagens_Restaurante/@Html.DisplayFor(modelItem => item.Foto)" height="100" width="100" />
+                        </td>
+
+                    </tr>
+                    }
+                }
+            }
+        }
+    </tbody>
+</table>
+

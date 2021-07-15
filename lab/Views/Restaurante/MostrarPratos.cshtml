@@ -1,0 +1,106 @@
+﻿@model IEnumerable<lab.Models.PratoDia>
+@{
+    var IdPrato = ViewBag.Id as int[];
+    @using Microsoft.AspNetCore.Http
+
+    var IdPratos = ViewBag.fav as int[];
+
+    var DataPratos = ViewBag.DataPratos as string[];
+
+    int i = 0;
+
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nome
+            </th>
+            <th>
+                Tipo
+            </th>
+            <th>
+                Preço
+            </th>
+            <th>
+                Descrição
+            </th>
+            <th>
+                Data do Prato
+            </th>
+            <th>
+                Foto
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (IdPrato != null)
+        {
+            @foreach (var item in Model)
+            {
+                if (IdPrato.Contains(item.Id))
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tipo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Preco) €
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Descricao)
+                        </td>
+                        <td>
+                            @DataPratos[i]
+                        </td>
+                        @{ 
+                            i++;
+                        }
+                        <td>
+                            <img src="~/Img/@Html.DisplayFor(modelItem => item.Foto)" height="100" width="100" />
+                        </td>
+                        @if (Context.Session.GetString("Role") == "Cliente")
+                        {
+                            <td>
+                                @if (!IdPratos.Contains(item.Id))
+                                {
+                                    @Html.ActionLink("Adicionar aos Favoritos", "AdicionarPratosFavoritos", "Cliente", new { ID = item.Id })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("Eliminar dos Favoritos", "EliminarPratosFavoritos", "Cliente", new { ID = item.Id })
+                                }
+                            </td>
+                        }
+                        <td>
+                            @if (Context.Session.GetString("Role") == "Cliente")
+                            {
+                                <form asp-controller="Cliente" asp-action="AvaliarPratos" method="get">
+                                    <div class="form-group">
+                                        <button style="font-size : 10px;height: 120%;" type="submit" name="Id" value="@item.Id" class="form-control">Avaliar Pratos</button>
+                                        <span class="text-danger"></span>
+                                    </div>
+                                </form>
+                            }
+                            else
+                            {
+                                <form asp-controller="Cliente" asp-action="AvaliarPratos" method="get">
+                                    <div class="form-group">
+                                        <button style="font-size : 10px;height: 120%;" type="submit" name="Id" value="@item.Id" class="form-control">Ver Avaliacões dos Pratos</button>
+                                        <span class="text-danger"></span>
+                                    </div>
+                                </form>
+                            }
+                        </td>
+
+                    </tr>
+                }
+            }
+        }
+    </tbody>
+</table>

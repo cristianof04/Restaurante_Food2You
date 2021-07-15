@@ -1,0 +1,29 @@
+﻿@model lab.Models.Bloquear
+
+<h4>Bloquear</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Bloquear">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UsernameUtilizador" class="control-label"></label>
+                <input asp-for="UsernameUtilizador" class="form-control" />
+                <span asp-validation-for="UsernameUtilizador" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Motivo" class="control-label"></label>
+                <input asp-for="Motivo" class="form-control" />
+                <span asp-validation-for="Motivo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Bloquear" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Restaurante" asp-action="Menu">Voltar ao Menu</a>
+</div>
+

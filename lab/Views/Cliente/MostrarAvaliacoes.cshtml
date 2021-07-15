@@ -1,0 +1,84 @@
+﻿@model IEnumerable<lab.Models.AvaliarRestaurates>
+@{
+    var NomeRestaurante = ViewBag.NomeRestaurante as string;
+    var FotoRestaurante = ViewBag.FotoRestaurante as string;
+    var NomeClientes = ViewBag.NomeClientes as string[];
+
+    string UsernameRestaurante = ViewBag.UsernameRestaurante;
+
+    var jaAvaliou = ViewBag.jaAvaliouP as string;
+
+    int i = 0;
+
+    int estrelas = 0;
+}
+
+<h1>Avaliar Restaurantes</h1>
+<br />
+<h2>Restaurante: @NomeRestaurante</h2>
+<br />
+
+<img src="~/Imagens_Restaurante/@FotoRestaurante" height="100" width="100" />
+
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Avaliacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comentario)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            for (i = 0; i < NomeClientes.Length; i++)
+            {
+                <tr>
+                    <td>
+                        @NomeClientes[i]
+                    </td>
+                    <td>
+                        @{
+                            estrelas = Convert.ToInt32(item.Avaliacao);
+                        }
+
+                        @if (estrelas == 1)
+                        {
+                            <a>@estrelas estrela</a>
+                        }
+                        else
+                        {
+                            <a>@estrelas estrelas</a>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Comentario)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<br />
+
+@if (jaAvaliou == null)
+{
+    ViewData["UsernameRestaurante"] = UsernameRestaurante;
+    AvaliarRestaurates model = new AvaliarRestaurates();
+
+    <div>
+        <partial name="AvaliarRestaurantes" model="model" view-data="ViewData" />
+    </div>
+}
+
+<br />
+
+<div>
+    <a asp-controller="Restaurante" asp-action="Menu">Retrodecer</a>
+</div>

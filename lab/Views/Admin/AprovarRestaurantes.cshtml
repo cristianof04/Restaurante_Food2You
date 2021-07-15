@@ -1,0 +1,90 @@
+﻿@model IEnumerable<lab.Models.Restaurante>
+
+@{
+    ViewData["Title"] = "AprovarRestaurantes";
+}
+
+<h1>Aprovar Restaurantes</h1>
+
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Morada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gps)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Horario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiaDescanso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoServico)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Foto)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            if (item.QuemAprovou == null)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Morada)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Telefone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Gps)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Horario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DiaDescanso)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipoServico)
+                    </td>
+                    <td>
+                        <img src="~/Imagens_Restaurante/@Html.DisplayFor(modelItem => item.Foto)" height="100" width="100" />
+                    </td>
+                    <td>
+                        <form asp-action="NaoAprovar" method="post">
+                            <div class="form-group">
+                                <button  style="font-size : 10px;height: 120%;" type="submit" name="RestauranteUsername" value="@item.Username" class="form-control">Não Aprovar</button>
+                                <span class="text-danger"></span>
+                            </div>
+                        </form>
+
+                        <form asp-action="AprovarRestaurantes" method="post">
+                            <div class="form-group">
+                                <button  style="font-size : 10px;height: 120%;" type="submit" name="RestauranteUsername" value="@item.Username" class="form-control">Aprovar</button>
+                                <span class="text-danger"></span>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

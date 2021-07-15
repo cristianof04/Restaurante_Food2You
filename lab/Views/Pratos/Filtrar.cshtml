@@ -1,0 +1,41 @@
+﻿@model IEnumerable<lab.Models.PratoDia>
+@{
+    ViewData["Title"] = "Filtrar";
+    var Tipo = ViewBag.Tipo as string;
+}
+
+<h4 style="text-align:center"> Filtrar Pratos</h4>
+
+<br />
+
+<a>Tipo de Prato  </a>
+
+<form asp-action="Filtrar">
+    <select name="tipo">
+        <option value="Carne">Carne</option>
+        <option value="Peixe">Peixe</option>
+        <option value="Vegan">Vegan</option>
+    </select>
+    <br />
+    <br />
+    <button type="submit" class="btn btn-primary">Filtrar</button>
+</form>
+
+@if (Tipo != null)
+{
+    ViewData["Tipo"] = Tipo;
+    @if (Model != null)
+    {
+        <partial name="MostrarPratosDoTipo" model="Model" view-data="ViewData" />
+    }
+
+}
+else
+{
+    Tipo = "Carne";
+    ViewData["Tipo"] = Tipo;
+    @if (Model != null)
+    {
+        <partial name="MostrarPratosDoTipo" model="Model" view-data="ViewData" />
+    }
+}

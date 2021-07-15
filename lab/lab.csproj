@@ -1,0 +1,70 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>aspnet-lab-78C072A1-49FC-46D6-8D8B-4E4F27E686FB</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Views\NewFolder2\**" />
+    <Compile Remove="Views\NewFolder\**" />
+    <Compile Remove="wwwroot\Imagens_Pratos\**" />
+    <Content Remove="Views\NewFolder2\**" />
+    <Content Remove="Views\NewFolder\**" />
+    <Content Remove="wwwroot\Imagens_Pratos\**" />
+    <EmbeddedResource Remove="Views\NewFolder2\**" />
+    <EmbeddedResource Remove="Views\NewFolder\**" />
+    <EmbeddedResource Remove="wwwroot\Imagens_Pratos\**" />
+    <None Remove="Views\NewFolder2\**" />
+    <None Remove="Views\NewFolder\**" />
+    <None Remove="wwwroot\Imagens_Pratos\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Grpc.Core" Version="2.34.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="System.Drawing.Common" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Admin\AprovarRestaurantes.cshtml" />
+    <None Include="Views\Admin\Bloquear.cshtml" />
+    <None Include="Views\Admin\Eleger.cshtml" />
+    <None Include="Views\Cliente\Favoritos.cshtml" />
+    <None Include="Views\Cliente\PratosFavoritos.cshtml" />
+    <None Include="Views\Cliente\RestaurantesFavoritos.cshtml" />
+    <None Include="Views\Restaurante\AdicionarPrato.cshtml" />
+    <None Include="Views\Restaurante\Menu.cshtml" />
+    <None Include="Views\Restaurante\MostrarPratos.cshtml" />
+    <None Include="Views\Restaurante\MostrarRestaurantes.cshtml" />
+    <None Include="Views\Restaurante\Registar.cshtml" />
+    <None Include="Views\Restaurante\SideBar.cshtml" />
+    <None Include="Views\User\Ajuda.cshtml" />
+    <None Include="Views\User\Login.cshtml" />
+    <None Include="Views\User\Registar.cshtml" />
+    <None Include="Views\User\TipoRegisto.cshtml" />
+    <None Include="wwwroot\user.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Img\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\Imagens_Restaurante\restaurante1.png">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

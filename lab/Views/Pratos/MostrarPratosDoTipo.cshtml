@@ -1,0 +1,69 @@
+﻿@model IEnumerable<lab.Models.PratoDia>
+@{
+    var tipo = ViewData["Tipo"].ToString();
+    var NomeRestaurantes = ViewBag.NomeRestaurantes as string[];
+    int i = 0;
+}
+
+<br />
+
+<h3>Pratos do tipo: @tipo</h3>
+
+<br />
+
+<br />
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nome do Restaurante
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tipo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Preco)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Foto)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @NomeRestaurantes[i]
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tipo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Preco) €
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descricao)
+                </td>
+                <td>
+                    <img src="~/Img/@item.Foto" height="100" width="100" />
+                </td>
+                @{
+                    i++;
+                }
+            </tr>
+        }
+    </tbody>
+</table>

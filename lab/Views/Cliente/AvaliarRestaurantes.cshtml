@@ -1,0 +1,46 @@
+﻿@model lab.Models.AvaliarRestaurates
+
+@{
+    @using Microsoft.AspNetCore.Http
+    ViewData["Title"] = "AvaliarRestaurantes";
+    string UsernameRestaurante = ViewBag.UsernameRestaurante;
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AvaliarRestaurantes">
+            <input name="UsernameRestaurante" value="@ViewData["UsernameRestaurante"].ToString()" type="hidden"/>
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            @if (ViewBag.jaAvaliou == null && Context.Session.GetString("Role") == "Cliente")
+            {
+                <div class="form-group">
+                    <label asp-for="Avaliacao" class="control-label"></label>
+
+                    <select asp-for="Avaliacao" class="form-control">
+
+                        <option value="1 ">1 Estrela</option>
+                        <option value="2 ">2 Estrela</option>
+                        <option value="3 ">3 Estrela</option>
+                        <option value="4 ">4 Estrela</option>
+                        <option value="5 ">5 Estrela</option>
+                    </select>
+                    <span asp-validation-for="Avaliacao" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Comentario" class="control-label"></label>
+                    <input asp-for="Comentario" class="form-control" />
+                    <span asp-validation-for="Comentario" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <button type="submit" name="UsernameRestaurante" value="@UsernameRestaurante" class="btn btn-primary">Avaliar</button>
+                </div>
+            }
+        </form>
+    </div>
+</div>
+
+
+

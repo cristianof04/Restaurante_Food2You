@@ -1,0 +1,75 @@
+﻿@model IEnumerable<lab.Models.AvaliarPratos>
+@{
+    var NomeRestaurante = ViewBag.NomeRestaurante as string;
+
+    var NomePrato = ViewBag.NomePrato as string;
+
+    var FotoPrato = ViewBag.FotoPrato as string;
+
+    var NomeClientes = ViewBag.NomeClientes as string[];
+
+    var UserNameR = ViewBag.UsernameRestaurante as string;
+
+    ViewBag.UsernameRestaurante = UserNameR;
+
+    int i = 0;
+
+    int estrelas = 0;
+}
+
+<h2>Restaurante: @NomeRestaurante</h2>
+<br />
+<h2>Prato: @NomePrato</h2>
+
+<br />
+
+<img src="~/Img/@FotoPrato" height="100" width="100" />
+
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nome do Cliente
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Avaliacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comentario)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            for (i = 0; i < NomeClientes.Length; i++)
+            {
+                <tr>
+                    <td>
+                        @NomeClientes[i]
+                    </td>
+                    <td>
+                        @{
+                            estrelas = Convert.ToInt32(item.Avaliacao);
+                        }
+
+                        @if (estrelas == 1)
+                        {
+                            <a>@estrelas estrela</a>
+                        }
+                        else
+                        {
+                            <a>@estrelas estrelas</a>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Comentario)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

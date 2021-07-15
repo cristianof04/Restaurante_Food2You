@@ -1,0 +1,100 @@
+﻿@model lab.Models.Restaurante
+
+
+@{
+    ViewData["Title"] = "Registar";
+}
+
+<h1>Registar Restaurante</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Registar" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Email</label>
+                <input name="email" class="form-control" />
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Username</label>
+                <input asp-for="Username" class="form-control" />
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Password</label>
+                <input type="password" name="password" class="form-control" />
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Confirmar Password</label>
+                <input type="password" name="cPassword" class="form-control" />
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telefone" class="control-label"></label>
+                <input asp-for="Telefone" maxlength="9" class="form-control" />
+                <span asp-validation-for="Telefone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Morada" class="control-label"></label>
+                <input asp-for="Morada" class="form-control" />
+                <span asp-validation-for="Morada" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gps" class="control-label"></label>
+                <input asp-for="Gps" class="form-control" />
+                <span asp-validation-for="Gps" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Horario" class="control-label"></label>
+                <input asp-for="Horario" class="form-control" />
+                <span asp-validation-for="Horario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DiaDescanso" class="control-label"></label>
+                <select asp-for="DiaDescanso" class="form-control">
+                    <option value="Segunda-feira">Segunda-feira</option>
+                    <option value="Terça-feira">Terça-feira</option>
+                    <option value="Quarta-feira">Quarta-feira</option>
+                    <option value="Quinta-feira">Quinta-feira</option>
+                    <option value="Sexta-feira">Sexta-feira</option>
+                    <option value="Sábado">Sábado</option>
+                    <option value="Domingo">Domingo</option>
+                </select>
+                <span asp-validation-for="DiaDescanso" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TipoServico" class="control-label"></label>
+                <select asp-for="TipoServico" class="form-control">
+                    <option value="TakeWay">TakeWay</option>
+                    <option value="Local">Local</option>
+                    <option value="Entrega">Entrega</option>
+                    <option value="Local;TakeWay">Local & TakeWay</option>
+                    <option value="Local;TakeWay;Entrega">Todas as opções!</option>
+                </select>
+
+                <span asp-validation-for="TipoServico" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Foto" class="control-label"></label>
+                <input asp-for="Foto" type="file" class="form-control" accept=".jpg, .png, .jpeg|image/*" />
+                <span asp-validation-for="Foto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Criar Restaurante" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Menu">Retroceder</a>
+</div>
